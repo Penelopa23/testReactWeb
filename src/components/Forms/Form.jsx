@@ -17,6 +17,8 @@ const Form = () => {
             subject,
             queryId,
         }
+        console.log(data)
+        console.log("I'm here!")
         console.log(
         fetch('https://staging.lightpay.info/web-data', {
             method: 'POST',
@@ -28,9 +30,9 @@ const Form = () => {
     }, [country, city, street, subject, queryId])
 
     useEffect(() => {
-        tg.onEvent('mainButtomClicked', onSendData);
+        tg.onEvent('mainButtonClicked', onSendData);
         return () => {
-            tg.offEvent('mainButtomClicked', onSendData);
+            tg.offEvent('mainButtonClicked', onSendData);
         }
     }, [])
 
