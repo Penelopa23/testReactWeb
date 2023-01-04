@@ -35,7 +35,7 @@ const Form = () => {
         return () => {
             tg.offEvent('mainButtonClicked', onSendData);
         }
-    }, [])
+    }, [onSendData()])
 
 
     useEffect(() => {
@@ -63,6 +63,7 @@ const Form = () => {
         setStreet(e.target.value)
     }
     const onChangeSubject = (e) => {
+        console.log("physical" + e)
         setSubject(e.target.value)
     }
 
