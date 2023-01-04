@@ -7,7 +7,7 @@ const Form = () => {
     const [city, setCity] = useState('');
     const [street, setStreet] = useState('');
     const [subject, setSubject] = useState('physical');
-    const {tg, queryId} = useTelegram();
+    const {tg, queryId, user} = useTelegram();
 
     const onSendData = useCallback(() => {
         const data = {
@@ -17,6 +17,7 @@ const Form = () => {
             subject,
             queryId,
         }
+        console.log(user)
         console.log(data)
         console.log("I'm here!")
         console.log(
@@ -52,6 +53,7 @@ const Form = () => {
     }, [country, street])
 
     const onChangeCounty = (e) => {
+        console.log("COUNTRY" + e)
         setCountry(e.target.value)
     }
     const onChangeCity = (e) => {
