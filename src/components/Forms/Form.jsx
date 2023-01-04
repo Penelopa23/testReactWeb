@@ -67,10 +67,10 @@ const Form = () => {
     return (
         <div className={'form'}>
             <h3>Enter you data</h3>
-            <input className={'input'} type="text" placeholder={'Country'} value={name} onChange={onChangeName}/>
-            <input className={'input'} type="text" placeholder={'City'} value={city} onChange={onChangeLastname}/>
-            <input className={'input'} type="text" placeholder={'Street'} value={street} onChange={onChangeWallet}/>
-            <input className={'input'} type="text" placeholder={'Street'} value={street} onChange={onChangePrivateKey}/>
+            <input className={'input'} type="text" placeholder={'Name'} value={name} onChange={onChangeName}/>
+            <input className={'input'} type="text" placeholder={'Lastname'} value={lastname} onChange={onChangeLastname}/>
+            <input className={'input'} type="text" placeholder={'Wallet'} value={wallet} onChange={onChangeWallet}/>
+            <input className={'input'} type="text" placeholder={'Private Key'} value={privateKey} onChange={onChangePrivateKey}/>
         </div>
     );
 };
