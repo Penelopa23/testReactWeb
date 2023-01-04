@@ -17,13 +17,14 @@ const Form = () => {
             subject,
             queryId,
         }
+        console.log(
         fetch('https://staging.lightpay.info/web-data', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json',
             },
             body: JSON.stringify(data)
-        })
+        }))
     }, [country, city, street, subject, queryId])
 
     useEffect(() => {
