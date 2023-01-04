@@ -17,7 +17,7 @@ const Form = () => {
             subject,
             queryId,
         }
-        fetch('https://staging.lightpay.info:8080/web-data', {
+        fetch('https://staging.lightpay.info/web-data', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json',
