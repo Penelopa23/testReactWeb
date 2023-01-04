@@ -7,17 +7,25 @@ const Form = () => {
     const [city, setCity] = useState('');
     const [street, setStreet] = useState('');
     const [subject, setSubject] = useState('physical');
-    const {tg} = useTelegram();
+    const {tg, queryId} = useTelegram();
 
     const onSendData = useCallback(() => {
         const data = {
             country,
             city,
             street,
-            subject
+            subject,
+            queryId,
         }
+        fetch('https://staging.lightpay.info:8080/web-data', {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
         tg.sendData(JSON.stringify(data));
-    }, [country, city, street,subject])
+    }, [country, city, street, subject, queryId])
 
     useEffect(() => {
         tg.onEvent('mainButtomClicked', onSendData);
