@@ -1,13 +1,13 @@
 import React from 'react';
-import {useTelegram} from "../hooks/useTelegram";
+import {useTelegram} from "../../Hooks/useTelegram";
 import './Header.css';
 
 const Header = () => {
     const {user, onClose} = useTelegram();
+    onClose();
 
     return (
         <div className={'header'}>
-            <button onClick={onClose}>Close</button>
             <span className={'username'}>
                 {user?.username}
             </span>

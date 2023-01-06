@@ -1,32 +1,32 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import './Form.css'
-import {useTelegram} from "../hooks/useTelegram";
+import './Registration.css'
+import {useTelegram} from "../../Hooks/useTelegram";
+// require('dotenv-webpack').config();
+
 
 const Form = () => {
-    const [name, setName] = useState('');
-    const [lastname, setLastname] = useState('');
     const [wallet, setWallet] = useState('');
     const [privateKey, setPrivateKey] = useState('');
-    const {tg, queryId, user} = useTelegram();
+    const {tg, queryId, user, onClose} = useTelegram();
+    tg.expand(); //Expand page
+    onClose();
 
     const onSendData = useCallback(() => {
         const data = {
-            name,
-            lastname,
             wallet,
             privateKey,
             queryId,
             user
         }
 
-        fetch('https://staging.lightpay.info/web-data', {
+        fetch(process.env.REACT_APP_API_URL + '/registration', {
             method: 'POST',
             headers: {
                 'Content-Type' : 'application/json',
             },
             body: JSON.stringify(data)
         })
-    }, [name, lastname, wallet, privateKey, queryId, user])
+    }, [wallet, privateKey, queryId, user])
 
     useEffect(() => {
         tg.onEvent('mainButtonClicked', onSendData);
@@ -38,24 +38,18 @@ const Form = () => {
 
     useEffect(() => {
         tg.MainButton.setParams({
-            text: 'Send Data'
+            text: 'Registration'
         })
     }, [])
 
     useEffect(() => {
-        if(!name || !lastname || !wallet || !privateKey) {
+        if(!wallet || !privateKey) {
             tg.MainButton.hide();
         } else {
             tg.MainButton.show();
         }
-    }, [name, lastname, wallet, privateKey])
+    }, [wallet, privateKey])
 
-    const onChangeName = (e) => {
-        setName(e.target.value)
-    }
-    const onChangeLastname = (e) => {
-        setLastname(e.target.value)
-    }
     const onChangeWallet = (e) => {
         setWallet(e.target.value)
     }
@@ -67,10 +61,10 @@ const Form = () => {
     return (
         <div className={'form'}>
             <h3>Enter you data</h3>
-            <input className={'input'} type="text" placeholder={'Name'} value={name} onChange={onChangeName}/>
-            <input className={'input'} type="text" placeholder={'Lastname'} value={lastname} onChange={onChangeLastname}/>
-            <input className={'input'} type="text" placeholder={'Wallet'} value={wallet} onChange={onChangeWallet}/>
-            <input className={'input'} type="text" placeholder={'Private Key'} value={privateKey} onChange={onChangePrivateKey}/>
+            <input className={'input'} type="text" placeholder={'You Wallet'} value={wallet}
+                   onChange={onChangeWallet}/>
+            <input className={'input'} type="text" placeholder={'Private Key'} value={privateKey}
+                   onChange={onChangePrivateKey}/>
         </div>
     );
 };

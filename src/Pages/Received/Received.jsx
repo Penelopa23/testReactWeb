@@ -1,11 +1,11 @@
 import React from 'react';
-import './Send.css'
-const Send = () => {
+
+const Received = () => {
     return (
         <div>
-        SEND
+            
         </div>
     );
 };
 
-export default Send;
+export default Received;

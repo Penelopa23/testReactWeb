@@ -1,10 +1,11 @@
 import {useEffect} from 'react';
 import './App.css';
-import {useTelegram} from "./components/hooks/useTelegram";
+import {useTelegram} from "./Hooks/useTelegram";
 import Header from "./components/Header/Header";
-import {Route, Routes} from "react-router-dom";
-import Form from "./components/Forms/Form";
-import Send from "./components/Send/Send";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Form from "./Pages/Registration/Registration";
+import Send from "./Pages/Send/Send";
+import AppRouter from "./Routes/AppRouter";
 
 function App() {
     const {tg, onToggleButton} = useTelegram();
@@ -13,16 +14,10 @@ function App() {
         tg.ready();
     }, [])
 
-
     return (
-        <div className="App">
-            <Header/>
-            <Routes>
-                <Route index element={ <Form/>}/>
-                <Route path={'form'} element={ <Form/>}/>
-                <Route path={'send'} element={ <Send/>}/>
-            </Routes>
-         </div>
+        <BrowserRouter>
+           <AppRouter />
+         </BrowserRouter>
     );
 }
 
